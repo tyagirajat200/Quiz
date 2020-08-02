@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from "@angular/common/http";
+import { environment } from 'src/environments/environment';
 
 const headers = {
   'auth-token': '19c4ff12-e027-4320-b844-2cda768714e8',
@@ -14,7 +15,7 @@ const headers = {
 export class DataService {
 
   constructor(private http :HttpClient) { }
-  url = 'http://54.196.209.5:4000'
+  url = environment.apiUrl
    
   getQuiz()
   {
