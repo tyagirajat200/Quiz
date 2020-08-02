@@ -1,0 +1,57 @@
+<div class="container w-75">
+  <h1 class="text-center text-white" style="background-color: grey;">
+    {{ Qname }}
+  </h1>
+
+  <div *ngIf="!result">
+    <div class="progress">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [ngStyle]="{ width: progress + '%' }"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+      </div>
+    </div>
+    <div class="time-bar">Time Remaining : 0:{{(i<10) ? '0'+i : i}}/0:15 seconds</div>
+    <div class="container py-5" style="background-color: rgb(233 236 239);">
+      <div class="bg-white py-1 pl-3 m-0 question">{{ CurQuestion }}</div>
+      
+      <div class="input-group" *ngFor="let item of Options let i =index" >
+        <div class="input-group-text" style="cursor: pointer;">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="{{ item }}"
+            [(ngModel)]="selectAnswer"
+            name="option"
+            (change)="onClick()"
+            id="flexRadioDefault{{i+1}}"
+            style="cursor: pointer;"
+          />
+        </div>
+        <label class="form-control m-0" for="flexRadioDefault{{i+1}}" style="cursor: pointer;">
+          <div class="answer-value-{{i+1}}">
+            {{ item }}
+        </div>
+      </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-4" style="background-color: rgb(233 236 239);" *ngIf="result">
+    <h1 class="text-center score">Your Score Is : {{ result.score }}</h1>
+    <div class="px-4">
+      <h4 class="p-2 bg-secondary">Answers</h4>
+      <div
+        *ngFor="let item of AllQuestions; let i = index"
+        class="pt-1 pl-3 bg-white mb-1"
+      >
+        <div class="question-{{i+1}}">Question : {{ item.name }}</div>
+        <div class="submitted-answer-{{i+1}}">Your Answer : {{ result.questions[i].submitted_option }}</div>
+        <div class="correct-answer-{{i+1}}">Correct Answer : {{ result.questions[i].correct_option }}</div>
+      </div>
+    </div>
+  </div>
+</div>
