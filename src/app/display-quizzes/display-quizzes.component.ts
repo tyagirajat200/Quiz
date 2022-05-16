@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: "app-display-quizzes",
   templateUrl: "./display-quizzes.component.html",
-  styleUrls: ["./display-quizzes.component.scss"],
+  styleUrls: ["./display-quizzes.component.css"],
 })
 export class DisplayQuizzesComponent implements OnInit {
   constructor(private data: DataService,private router  :Router) {}
